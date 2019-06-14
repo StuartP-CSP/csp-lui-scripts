@@ -20,8 +20,12 @@ To create an API key:
 6.	Replace the values for **`$clientId`**, **`$clientSecret`** and **`$customerID`** with the values you noted/downloaded, towards the top of the script, in the section marked **`# Specify Citrix Cloud API credentials`**
 
 ### CspLuiMonthlyReporting.ps1
-Ran without any switches, **CspLuiMonthlyReporting.ps1** will default to querying the usage for the previous month, displaying totals for each SKU, paid and free users. The following switches are available:
- 
+Ran without any switches, **CspLuiMonthlyReporting.ps1** will default to querying the usage for the previous month, displaying totals for each SKU, paid and free users.
+
+![](images/CspLuiMonthlyReporting_Screenshot01.png)
+
+The following switches are available:
+
 * **`-month xx`** (where xx is the month number required) specifies the month to query
 * **`-year xxxx`** (where xxxx is the year) specifies the year to query
 * **`-detail`** forces the output (not CSV output) to show detail per server (as well as per SKU)
@@ -30,8 +34,25 @@ Ran without any switches, **CspLuiMonthlyReporting.ps1** will default to queryin
 * **`-quiet`** prevents output to screen
 * **`-send`** causes the .csv file name to be output to the PoSH pipeline
 
-![](images/CspLuiMonthlyReporting_Screenshot01.png)
-
 ![](images/CspLuiMonthlyReporting_Screenshot02.png)
 
 ![](images/CspLuiMonthlyReporting_Screenshot03.png)
+
+### CspLuiServerStatus.ps1
+Ran without switches, **CspLuiServerStatus.ps1** will default to querying the current reporting status for all servers listed for a given CustomerID.
+
+![](images/CspLuiServerStatus_Screenshot01.png)
+
+The following switches are available:
+* **`-output <option>`** restricts status report to criteria specified by the option. Options available are:
+-- `error` returns only servers with an error flag set
+-- `warning` returns servers a warning and error flags set
+-- `flag` returns servers with any flag set
+-- `ccu` returns servers with CCU warning(s)
+-- `expiring`returns servers with an license expiration warning
+* **`-detail`** forces the output (not CSV output) to show detail per server, including messages, warnings and errors
+* **`-csv`** causes a comma delimited file of the server status to be dumped to the current directory. If a different directory is required, amend the default value at the top of the script or use the -csvfilepath switch. The file created will be named **`LUI_ServerStatus_<customerID>_<year>-<month>.csv`**.
+* **`-csvfilepath`** amends the file output path for the .csv file (e.g. -csvfilepath c:\temp). Only relevant with the -csv switch above.
+* **`-quiet`** prevents output to screen
+
+![](images/CspLuiServerStatus_Screenshot02.png)

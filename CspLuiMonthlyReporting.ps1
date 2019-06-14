@@ -23,7 +23,7 @@ param (
   [switch]$detail = $false,                         # Switch to toggle detail report
   [switch]$csv = $false,                            # Switch to toggle CSV file output
   [string]$csvfilepath = "./",                      # Set default path for CSV export to current working directory
-  [switch]$quiet = $false,                           # Switch to toggle screen output
+  [switch]$quiet = $false,                          # Switch to toggle screen output
   [switch]$send = $false
 )
 
@@ -222,6 +222,5 @@ OutputUsagePerSku "XDT_ADV_UD"
 OutputUsagePerSku "XDT_STD_UD" 
 
 if (( test-path $csvfilepath ) -and ($send -eq $true )) {
-  $file = $csvfilepath
-  Write-Output $file
+  Write-Output $csvfilepath
 }
