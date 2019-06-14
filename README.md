@@ -1,9 +1,9 @@
 # CSP LUI Scripts
-These scripts have been written to assist Citrix Service Providers utilise the [Citrix Cloud Licensing API](https://licensing.citrixworkspacesapi.net) to query usage and status. They are read-only and **do not** make any amendments, simply executes GET requests for data, with some options for dumping out the results, either to the console or .csv file (or both).
+These scripts have been written to assist Citrix Service Providers utilise the [Citrix Cloud Licensing API](https://licensing.citrixworkspacesapi.net) to query usage and status. They are read-only and **do not** make any amendments, they simply execute GET requests for data, with some options for dumping out the results, either to the console or .csv file (or both).
 
 **Use at your own risk** as these are not Citrix supported scripts. They have been written by myself as a proof-of-concept.
 
-Written with and **only tested on** PowerShell Core 6+ - they will error if used with earlier versions.
+Written with and **only tested on** PowerShell Core 6+. They will error if used with earlier versions.
 
 ### Citrix Cloud API Secure Client Token
 A Citrix Cloud API Secure Client token will need to be created and the variables at the start of each script amended.
@@ -30,3 +30,8 @@ Ran without any switches, **CspLuiMonthlyReporting.ps1** will default to queryin
 * **`-quiet`** prevents output to screen
 * **`-send`** causes the .csv file name to be output to the PoSH pipeline
 
+![](images/CspLuiMonthlyReporting_Screenshot01.png)
+
+![](images/CspLuiMonthlyReporting_Screenshot02.png)
+
+![](images/CspLuiMonthlyReporting_Screenshot03.png)
