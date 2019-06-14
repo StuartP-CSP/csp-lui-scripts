@@ -13,7 +13,7 @@ To create an API key:
 2.	Select the **API Access** tab
 3.	Note the **CustomerID** from the screen
 4.	Specify a name for the client and hit the **Create Client** button
-![CustomerID](https://www.dropbox.com/s/7sps1ncf3wzrce2/cc_api_customerid.png?dl=0)
+![CustomerID](images/cc_api_customerid.png)
 5.	Download the resulting ID and Secret
 6.	Replace the values for **`$clientId`**, **`$clientSecret`** and **`$customerID`** with the values you noted/downloaded, towards the top of the script, in the section marked **`# Specify Citrix Cloud API credentials`**
 
