@@ -28,9 +28,9 @@ param (
 )
 
 # Specify Citrix Cloud API credentials 
-$clientId = "93aea4f8-968d-4cc3-8514-d309e0493730"  #Replace with your clientId
-$clientSecret = "mOqSQIvqUiCTVzuJyJykBw=="          #Replace with your clientSecret
-$customerId = "BuckeyeCSP81"                        #Replace with your customer name
+$clientId = ""        #Replace with your clientId
+$clientSecret = ""    #Replace with your clientSecret
+$customerId = ""      #Replace with your customer name
 
 # Correct month and date, if previous month is in previous year (e.g. January)
 if ( $month -eq 0 ) {
