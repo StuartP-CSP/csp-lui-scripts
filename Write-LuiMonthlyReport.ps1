@@ -1,5 +1,5 @@
 ###############################################
-#       CspLuiMonthlyReporting.ps1
+#       Write-LuiMonthlyReport.ps1
 #
 # This script is intended to utilise the Citrix Cloud licensing
 # API to display the reported LUI license usage, for a given partner,
@@ -27,10 +27,20 @@ param (
   [switch]$send = $false
 )
 
-# Specify Citrix Cloud API credentials 
-$clientId = ""        #Replace with your clientId
-$clientSecret = ""    #Replace with your clientSecret
-$customerId = ""      #Replace with your customer name
+# Read Citrix Cloud API credentials from cccrreds.json file or request via user input 
+if ( test-path ./cccreds.json) {
+  $objCreds = Get-Content ./cccreds.json | ConvertFrom-Json 
+} else {
+
+  $customerId = Read-Host -Prompt "CustomerID"        # Request customerID
+  $clientId = Read-Host -Prompt "ClientID"            # Request clientId
+  $clientSecret = Read-Host -Prompt "Client Secret"   # Request clientSecret
+
+  $objCreds = New-Object -TypeName psobject
+  $objCreds | Add-Member -MemberType NoteProperty -Name customerID -Value $customerId
+  $objCreds | Add-Member -MemberType NoteProperty -Name clientId -Value $clientId
+  $objCreds | Add-Member -MemberType NoteProperty -Name clientSecret -Value $clientSecret
+}
 
 # Correct month and date, if previous month is in previous year (e.g. January)
 if ( $month -eq 0 ) {
@@ -49,8 +59,7 @@ $csvfilepath = $csvfilepath + "LUI_Report_" + $customerId + "_" + $year + "-" + 
 
 # Grab API Bearer Token
 function GetBearerToken {
-  param (
-    [Parameter(Mandatory=$true)]
+  param (    [Parameter(Mandatory=$true)]
     [string] $clientId,
     [Parameter(Mandatory=$true)]
     [string] $clientSecret
@@ -164,7 +173,7 @@ function OutputUsagePerSku {
 
   if ( $quiet -eq $false ) {
     if ( $firstcall -eq $true ) {
-      write-host "`nCSP LUI Usage for" $customerId "for" (Get-Culture).DateTimeFormat.GetMonthName($month) $year
+      write-host "`nCSP LUI Usage for" $objCreds.customerId "for" (Get-Culture).DateTimeFormat.GetMonthName($month) $year
       $script:firstcall = $false
     }
 
@@ -213,9 +222,9 @@ function OutputUsagePerSku {
 }
 
 ## MAIN
-$bearerToken = GetBearerToken $clientId $clientSecret
+$bearerToken = GetBearerToken $objCreds.clientId $objCreds.clientSecret
 
-$usage = GetCSPLicenseUsageData $customerId $reportdate
+$usage = GetCSPLicenseUsageData $objCreds.customerId $reportdate
 
 OutputUsagePerSku "XDT_PLT_UD"
 OutputUsagePerSku "XDT_ADV_UD" 

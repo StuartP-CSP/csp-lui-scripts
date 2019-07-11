@@ -1,1 +1,4 @@
-creds.ps1
+cccreds.*
+Dev-*
+dev/
+tmp/

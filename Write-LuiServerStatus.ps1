@@ -1,5 +1,5 @@
 ###############################################
-#       CspLuiServerStatus.ps1
+#       Write-LuiServerStatus.ps1
 #
 # This script is intended to utilise the Citrix Cloud licensing
 # API to display the current LUI Server Status.
@@ -27,10 +27,20 @@ param (
   [switch]$quiet = $false                           # Switch to toggle screen output 
 )
 
-# Specify Citrix Cloud API credentials 
-$clientId = ""        #Replace with your clientId
-$clientSecret = ""    #Replace with your clientSecret
-$customerId = ""      #Replace with your customer name
+# Read Citrix Cloud API credentials from cccrreds.json file or request via user input 
+if ( test-path ./cccreds.json) {
+  $objCreds = Get-Content ./cccreds.json | ConvertFrom-Json 
+} else {
+
+  $customerId = Read-Host -Prompt "CustomerID"        # Request customerID
+  $clientId = Read-Host -Prompt "ClientID"            # Request clientId
+  $clientSecret = Read-Host -Prompt "Client Secret"   # Request clientSecret
+
+  $objCreds = New-Object -TypeName psobject
+  $objCreds | Add-Member -MemberType NoteProperty -Name customerID -Value $customerId
+  $objCreds | Add-Member -MemberType NoteProperty -Name clientId -Value $clientId
+  $objCreds | Add-Member -MemberType NoteProperty -Name clientSecret -Value $clientSecret
+}
 
 # Variables - do not change
 $csvfilepath = $csvfilepath + "LUI_ServerStatus_" + $customerId + "_" + (Get-Date).year + "-" + (Get-Date).month.ToString("00") + ".csv"
@@ -235,11 +245,11 @@ foreach ( $ls in $serverStatus.licenseServersStatus ) {
 }
 
 
-$bearerToken = GetBearerToken $clientId $clientSecret
+$bearerToken = GetBearerToken $objCreds.clientId $objCreds.clientSecret
 
-$serverStatus = GetCspLuiServerStatus $customerId
+$serverStatus = GetCspLuiServerStatus $objCreds.customerId
 
 write-host
-write-host "CSP LUI Server Status for" $customerId 
+write-host "CSP LUI Server Status for" $objCreds.customerId 
 
 DisplayLuiLsStatus $serverStatus
