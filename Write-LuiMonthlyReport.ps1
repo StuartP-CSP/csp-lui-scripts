@@ -50,7 +50,7 @@ if ( $month -eq 0 ) {
 
 # Variables - do not change
 $firstcall = $true
-$csvfilepath = $csvfilepath + "LUI_Report_" + $customerId + "_" + $year + "-" + $month + ".csv"
+$csvfilepath = $csvfilepath + "LUI_Report_" + $objCreds.customerId + "_" + $year + "-" + $month + ".csv"
 
 
 # Create date string for API call, padding month with 0's if required 
@@ -78,7 +78,7 @@ function GetBearerToken {
   } catch {
     # Dig into the exception to get the Response details.
     # Note that value__ is not a typo.
-    write-host "Error making REST request to:`n" $restUrl -ForegroundColor Red
+    write-host "Error making REST request to:`n" $trustUrl -ForegroundColor Red
     Write-Host "`nStatus Code:" $_.Exception.Response.StatusCode.value__ -ForegroundColor Red
     Write-Host "Status Description:" $_.Exception.Response.StatusDescription -ForegroundColor Red
     exit
@@ -110,7 +110,7 @@ function GetCSPLicenseUsageData {
   } catch {
     # Dig into the exception to get the Response details.
     # Note that value__ is not a typo.
-    write-host "Error making REST request to:`n" $restUrl -ForegroundColor Red
+    write-host "Error making REST request to:`n" $Url -ForegroundColor Red
     Write-Host "`nStatus Code:" $_.Exception.Response.StatusCode.value__ -ForegroundColor Red
     Write-Host "Status Description:" $_.Exception.Response.StatusDescription -ForegroundColor Red
     exit
