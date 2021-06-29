@@ -2,3 +2,6 @@ cccreds.*
 Dev-*
 dev/
 tmp/
+.vscode
+.devcontainer
+.DS_Store

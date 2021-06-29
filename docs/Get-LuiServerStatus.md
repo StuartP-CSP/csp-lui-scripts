@@ -18,7 +18,7 @@ The only switch available is the **-output** switch, which amends the object and
 * **`-output free`** - Returns license servers marked as 'free'.
 * **`-output all`** - Returns all servers (same as running without any switch).
 
-A **`null`** value will be returned if no matching serves are found.
+A **`null`** value will be returned if no matching servers are found.
 
 Some examples of the **`-output`** switch shown in the screenshots below:
 

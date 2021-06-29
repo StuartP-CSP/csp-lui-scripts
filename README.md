@@ -25,4 +25,5 @@ To create an API key:
 1.  [Save-CredentialsFile.ps1](docs/Save-CredentialsFile.md) - Create a JSON formated credentials file of Citrix Cloud API client values.
 2.  [Write-LuiMonthlyReport.ps1](docs/Write-LuiMonthlyReport.md) - Displays or exports to CSV VA&D LUI usage for given month.
 3. [Write-LuiServerStatus.ps1](docs/Write-LuiServerStatus.md) - Displays or exports to CSV Citrix license server(s).
-4. [Get-LuiServerStatus.ps1](docs/Get-LuiServerStatus.md) - Returns an PoSH object of Citrix licenser server(s), or a subset with in a specified condition.
+4. [Get-LuiServerStatus.ps1](docs/Get-LuiServerStatus.md) - Returns a PoSH object of Citrix license server(s), or a subset within a specified condition.
+5. [Get-LuiAdcStatus.ps1](doc/Get-LuiAdcStatus.md) - Returns a PoSH object of Citrix ADCs, or a subset within a specified condition.
