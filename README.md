@@ -26,4 +26,4 @@ To create an API key:
 2.  [Write-LuiMonthlyReport.ps1](docs/Write-LuiMonthlyReport.md) - Displays or exports to CSV VA&D LUI usage for given month.
 3. [Write-LuiServerStatus.ps1](docs/Write-LuiServerStatus.md) - Displays or exports to CSV Citrix license server(s).
 4. [Get-LuiServerStatus.ps1](docs/Get-LuiServerStatus.md) - Returns a PoSH object of Citrix license server(s), or a subset within a specified condition.
-5. [Get-LuiAdcStatus.ps1](doc/Get-LuiAdcStatus.md) - Returns a PoSH object of Citrix ADCs, or a subset within a specified condition.
+5. [Get-LuiAdcStatus.ps1](docs/Get-LuiAdcStatus.md) - Returns a PoSH object of Citrix ADCs, or a subset within a specified condition.
